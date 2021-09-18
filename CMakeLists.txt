@@ -13,6 +13,7 @@ set(CMAKE_CXX_STANDARD 17)
 add_library(frida-gum-cpp fridacpp.cpp)
 target_include_directories(frida-gum-cpp PRIVATE libs)
 target_link_libraries(frida-gum-cpp PRIVATE "${CMAKE_SOURCE_DIR}/libs/x86/frida-gum.lib" shlwapi)
+target_compile_options(frida-gum-cpp PRIVATE /utf-8)
 
 
 add_executable(example example.cpp)

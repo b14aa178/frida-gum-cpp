@@ -29,7 +29,7 @@ public:
     {
         printf("%s ecx: %x\n", __func__, context->cpu_context->ecx);
         thiz = context->cpu_context->ecx;
-        printf("saved this %p\n", thiz);
+        printf("saved this %lx\n", thiz);
     }
     void on_leave(GumInvocationContext* context) override
     {
@@ -41,7 +41,7 @@ public:
         auto test3_addr = &TestClass::test3;
         auto test3Type = (Test3type)(*(int*)&test3_addr);
 
-        printf("now thiz %p\n", thiz);
+        printf("now thiz %lx\n", thiz);
 
         __asm mov eax, this;
         __asm mov ecx, [eax] HookTest1.thiz;
@@ -61,7 +61,7 @@ int main()
     assert(r == 100);
 
     auto x = &TestClass::test2;
-    printf("test2 address %p\n", *(long*)&x);
+    printf("test2 address %lx\n", *(long*)&x);
     interceptor->attach((gpointer) * (long*)&x, listener, nullptr);
 
     TestClass testClass;
